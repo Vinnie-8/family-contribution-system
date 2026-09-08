@@ -1,0 +1,883 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Requirements & design documentation for a digital family contributions, campaigns, events and meetings platform">
+      
+      
+        <meta name="author" content="Project Team">
+      
+      
+      
+        <link rel="prev" href="../data-model/">
+      
+      
+        <link rel="next" href="../build-plan/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Security & Privacy - Family Contribution Management System</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#security-privacy" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Family Contribution Management System" class="md-header__button md-logo" aria-label="Family Contribution Management System" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Family Contribution Management System
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Security & Privacy
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../roles-and-permissions/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Roles & Permissions
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../functional-requirements/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Functional Requirements
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../non-functional-requirements/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Non-Functional Requirements
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../data-model/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Data Model
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Security & Privacy
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../build-plan/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Build Plan
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../decision-log/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Decision Log
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Family Contribution Management System" class="md-nav__button md-logo" aria-label="Family Contribution Management System" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Family Contribution Management System
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../roles-and-permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roles & Permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functional-requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functional Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../non-functional-requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Non-Functional Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security & Privacy
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security & Privacy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#onboarding-preventing-impersonation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Onboarding: preventing impersonation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minors-no-account-no-exposure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minors: no account, no exposure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privacy-aggregate-only-enforced-at-the-query-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Privacy: aggregate-only, enforced at the query layer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#guardian-actions-independence-with-accountability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Guardian actions: independence with accountability
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#payments-idempotency-and-financial-integrity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Payments: idempotency and financial integrity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audit-trail-the-record-that-cant-be-edited-away" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit trail: the record that can't be edited away
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#role-based-access-control-rbac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Role-based access control (RBAC)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backups-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backups &amp; recovery
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leadership-handover-preventing-a-permissions-gap-or-overlap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Leadership handover: preventing a permissions gap or overlap
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../build-plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decision-log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decision Log
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="security-privacy">Security &amp; Privacy<a class="headerlink" href="#security-privacy" title="Permanent link">&para;</a></h1>
+<p>This page explains <strong>how</strong>, not just <strong>what</strong> — the reasoning behind each safety-sensitive flow in the system.</p>
+<h2 id="onboarding-preventing-impersonation">Onboarding: preventing impersonation<a class="headerlink" href="#onboarding-preventing-impersonation" title="Permanent link">&para;</a></h2>
+<p>A public, guessable invite link is a real risk — it can be forwarded or screenshotted, letting a non-family member register as a "member."</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant C as Chairman/Secretary
+    participant S as System
+    participant M as New Member's Phone
+
+    C-&gt;&gt;S: Pre-create member record (name, phone, household)
+    S-&gt;&gt;S: Generate single-use, expiring InviteToken tied to that phone number
+    S-&gt;&gt;M: Send SMS with invite link + OTP
+    M-&gt;&gt;S: Open link, enter OTP
+    S-&gt;&gt;S: Verify OTP matches the token's phone number
+    S-&gt;&gt;M: Account activated</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Why this matters</p>
+<p>Self-registration is never allowed. Even if an invite link leaks, activation requires proving control of the <strong>exact phone number</strong> the Chairman registered — a stranger with the link but not the phone cannot complete registration.</p>
+</div>
+<h2 id="minors-no-account-no-exposure">Minors: no account, no exposure<a class="headerlink" href="#minors-no-account-no-exposure" title="Permanent link">&para;</a></h2>
+<p>Minors never receive login credentials — not now, not in a future version. This isn't a missing feature; it's a deliberate boundary:</p>
+<ul>
+<li><code>phone</code> and <code>email</code> are simply left null on their <code>Member</code> record.</li>
+<li>Every action taken "for" a minor (pledge, payment) is actually performed by an authenticated adult — a Guardian, or Treasurer/Chairman for in-person cash — and attributed to that adult in the audit trail, with the minor recorded as the beneficiary.</li>
+<li>There is no code path anywhere that issues a session, JWT, or OTP to a <code>Member</code> flagged <code>is_minor = true</code>.</li>
+</ul>
+<h2 id="privacy-aggregate-only-enforced-at-the-query-layer">Privacy: aggregate-only, enforced at the query layer<a class="headerlink" href="#privacy-aggregate-only-enforced-at-the-query-layer" title="Permanent link">&para;</a></h2>
+<p>The rule "no member sees another member's individual contribution" is enforced <strong>server-side</strong>, not by hiding fields in the UI:</p>
+<ul>
+<li>Public/member-facing endpoints return only aggregate figures (<code>total_contributed</code>, <code>remaining</code>, contributor <strong>count</strong>).</li>
+<li>Any endpoint that would expose a per-member amount checks the requester's role first — only Treasurer, Chairman, or the member viewing <strong>their own</strong> record can receive individual figures.</li>
+<li>This is a single, reusable authorization rule applied consistently, so a new report or dashboard added later inherits the same protection instead of needing it re-implemented.</li>
+</ul>
+<h2 id="guardian-actions-independence-with-accountability">Guardian actions: independence with accountability<a class="headerlink" href="#guardian-actions-independence-with-accountability" title="Permanent link">&para;</a></h2>
+<p>Guardians act <strong>without</strong> requiring Chairman/Treasurer co-approval — but "no approval needed" is not the same as "no record kept." Every Guardian-initiated pledge or payment is:</p>
+<ul>
+<li>Attributed to the Guardian's account in the <code>AuditLog</code>.</li>
+<li>Linked to the minor beneficiary via <code>GuardianLink</code>.</li>
+<li>Visible to the Guardian and to Treasurer/Chairman — but not to other members, under the same privacy rule as any other payment.</li>
+</ul>
+<h2 id="payments-idempotency-and-financial-integrity">Payments: idempotency and financial integrity<a class="headerlink" href="#payments-idempotency-and-financial-integrity" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>M-Pesa callbacks</strong> (once enabled) are deduplicated on a <strong>unique <code>mpesa_transaction_code</code> constraint</strong> — a retried or duplicate callback from Safaricom cannot create a second payment record.</li>
+<li><strong>All write endpoints</strong>, not just M-Pesa, accept an idempotency key — protecting against double-submits, which are common when an elderly or non-technical user taps "Pay" twice, unsure if the first tap registered.</li>
+<li><strong>Payment confirmation and pledge-fulfillment updates happen inside one database transaction.</strong> A payment is never marked confirmed while the linked pledge's fulfilled amount fails to update — the two changes succeed or fail together.</li>
+<li><strong>Money fields are fixed-point/decimal, never floating point.</strong> Floating-point rounding errors are unacceptable in financial records, however small the amounts involved.</li>
+</ul>
+<h2 id="audit-trail-the-record-that-cant-be-edited-away">Audit trail: the record that can't be edited away<a class="headerlink" href="#audit-trail-the-record-that-cant-be-edited-away" title="Permanent link">&para;</a></h2>
+<p>Every financial and administrative action — pledges, payments, expenses, fines, approvals, role changes, minute locks — writes an immutable <code>AuditLog</code> entry: actor, action, entity, before/after state, timestamp. Financial records are <strong>never hard-deleted</strong>; corrections are soft-deletes/voids with a reason, so the history of what happened is always reconstructable, including mistakes and their corrections.</p>
+<h2 id="role-based-access-control-rbac">Role-based access control (RBAC)<a class="headerlink" href="#role-based-access-control-rbac" title="Permanent link">&para;</a></h2>
+<p>Every admin endpoint checks the requester's role(s) before executing. Because roles are many-to-many, a single user can carry multiple permission sets (e.g. Chairman <em>and</em> Guardian) — the authorization check evaluates the union of a user's roles, not a single assumed role.</p>
+<h2 id="backups-recovery">Backups &amp; recovery<a class="headerlink" href="#backups-recovery" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Automated backups run at least daily, stored separately from the primary database (not on the same disk/instance).</li>
+<li>A documented restore procedure exists and is <strong>tested periodically</strong> — an untested backup is not a real backup.</li>
+<li>This matters more, not less, at a small scale: there's no dedicated operations team to catch a failure quickly, so recovery has to work correctly the first time it's actually needed.</li>
+</ul>
+<h2 id="leadership-handover-preventing-a-permissions-gap-or-overlap">Leadership handover: preventing a permissions gap or overlap<a class="headerlink" href="#leadership-handover-preventing-a-permissions-gap-or-overlap" title="Permanent link">&para;</a></h2>
+<p>A <code>HandoverRecord</code> requires <strong>explicit confirmation from the outgoing officer</strong> before the incoming officer's permissions activate — this prevents a moment where either both people have full admin rights simultaneously, or neither does. The 3-year term structure means this flow will run repeatedly over the system's life, so it's built as a proper state machine (<code>pending → confirmed → active</code>) rather than a one-off admin action.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

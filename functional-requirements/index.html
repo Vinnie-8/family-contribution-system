@@ -1,0 +1,996 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Requirements & design documentation for a digital family contributions, campaigns, events and meetings platform">
+      
+      
+        <meta name="author" content="Project Team">
+      
+      
+      
+        <link rel="prev" href="../roles-and-permissions/">
+      
+      
+        <link rel="next" href="../non-functional-requirements/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Functional Requirements - Family Contribution Management System</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#functional-requirements" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Family Contribution Management System" class="md-header__button md-logo" aria-label="Family Contribution Management System" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Family Contribution Management System
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Functional Requirements
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../roles-and-permissions/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Roles & Permissions
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Functional Requirements
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../non-functional-requirements/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Non-Functional Requirements
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../data-model/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Data Model
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../security-and-privacy/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Security & Privacy
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../build-plan/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Build Plan
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../decision-log/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Decision Log
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Family Contribution Management System" class="md-nav__button md-logo" aria-label="Family Contribution Management System" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Family Contribution Management System
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../roles-and-permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roles & Permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functional Requirements
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functional Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-member-management-onboarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Member Management &amp; Onboarding
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-contribution-rules-agm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Contribution Rules &amp; AGM
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-campaigns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Campaigns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-events-budgets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Events &amp; Budgets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35-pledges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Pledges
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36-payments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 Payments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#37-expenses-standing-welfare-fund" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 Expenses &amp; Standing Welfare Fund
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#38-fines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 Fines
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#39-dispute-reconciliation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.9 Dispute &amp; Reconciliation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#310-role-handover-leadership-terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.10 Role Handover &amp; Leadership Terms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#311-meetings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.11 Meetings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#312-reports-transparency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.12 Reports &amp; Transparency
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#313-notifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.13 Notifications
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#314-audit-trail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.14 Audit Trail
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#315-backups-data-retention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.15 Backups &amp; Data Retention
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../non-functional-requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Non-Functional Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security-and-privacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security & Privacy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../build-plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decision-log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decision Log
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="functional-requirements">Functional Requirements<a class="headerlink" href="#functional-requirements" title="Permanent link">&para;</a></h1>
+<h2 id="31-member-management-onboarding">3.1 Member Management &amp; Onboarding<a class="headerlink" href="#31-member-management-onboarding" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>FR1.1</strong> — Chairman/Secretary pre-creates a member record (name, phone, email, ID number, household) <em>before</em> the person has an account. Self-registration is not permitted — membership is always Chairman-gated.</li>
+<li><strong>FR1.2</strong> — System generates a single-use, expiring <strong>invite token</strong> tied to the member's specific phone number, sent via SMS. Activation requires OTP verification of that exact number, so a leaked link cannot be used by a non-family member.</li>
+<li><strong>FR1.3</strong> — Chairman can activate/deactivate adult members.</li>
+<li><strong>FR1.4</strong> — A <strong>Minor Member</strong> record can be created directly (no invite token, no login) and linked to a Guardian via <code>GuardianLink</code>. Minors appear in the directory as "linked to [Guardian]."</li>
+<li><strong>FR1.5</strong> — Members can be grouped into optional households/family branches.</li>
+<li><strong>FR1.6</strong> — Directory view of all active members (adults and minors), filterable by household.</li>
+</ul>
+<h2 id="32-contribution-rules-agm">3.2 Contribution Rules &amp; AGM<a class="headerlink" href="#32-contribution-rules-agm" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>FR2.1</strong> — Chairman can define a <strong><code>ContributionRule</code></strong> set for a campaign, specifying different amounts per member category (e.g. male: KES 2,000, female: KES 500 + one hen). Rules are data, not hardcoded logic — new categories or amounts don't require a code change.</li>
+<li><strong>FR2.2</strong> — Contributions can be <strong>cash or in-kind</strong> (e.g. a hen), each with an optional estimated value for reporting purposes.</li>
+<li><strong>FR2.3</strong> — An AGM-style contribution can be collected <strong>incrementally across monthly meetings</strong>, with a hard completion deadline (e.g. before the December end-year party) rather than a single lump payment.</li>
+</ul>
+<h2 id="33-campaigns">3.3 Campaigns<a class="headerlink" href="#33-campaigns" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>FR3.1</strong> — Chairman can create a <strong>Fixed Contribution</strong> campaign — amount determined by <code>ContributionRule</code>, auto-assigned to all active adult members (minors excluded by default unless the campaign explicitly opts them in).</li>
+<li><strong>FR3.2</strong> — Chairman can create a <strong>Pledge-Based Contribution</strong> campaign — no fixed amount, voluntary pledges.</li>
+<li><strong>FR3.3</strong> — Chairman can create a <strong>Quick Emergency Contribution</strong> — expedited flow with immediate multi-channel notification.</li>
+<li><strong>FR3.4</strong> — Every campaign has a <strong><code>start_date</code></strong> and <strong><code>end_date</code></strong>. Progress (<code>total_contributed</code>, <code>remaining</code>, <code>time_remaining</code>) is tracked continuously and shown on the member dashboard as <strong>aggregate figures only</strong>.</li>
+<li><strong>FR3.5</strong> — As the <code>end_date</code> approaches, the system sends automatic reminders: a general "campaign ending soon" notice to all members, and a personal "you still owe X" notice to members with an unfulfilled pledge.</li>
+<li><strong>FR3.6</strong> — A campaign <strong>auto-closes</strong> at <code>end_date</code>; Chairman can extend the date before closure if needed. On closure, the system issues a final total-collected summary, visible to all members.</li>
+<li><strong>FR3.7</strong> — A campaign can be linked to <strong>one or more Events</strong>, and an Event can draw funding from multiple campaigns (see <a href="../data-model/#campaign--event-many-to-many">Data Model</a> for the join structure).</li>
+</ul>
+<h2 id="34-events-budgets">3.4 Events &amp; Budgets<a class="headerlink" href="#34-events-budgets" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>FR4.1</strong> — Secretary can create an <strong>Event</strong> (e.g. End-Year Party, wedding, funeral) with a name, description, and date.</li>
+<li><strong>FR4.2</strong> — Secretary can upload a <strong>Budget</strong> for an event, broken down by category (venue, food, entertainment, etc.), with a <code>draft → approved → published</code> workflow — a budget is only visible to members once approved and published.</li>
+<li><strong>FR4.3</strong> — Members can view and download the published budget for any event.</li>
+<li><strong>FR4.4</strong> — Every recorded <strong>Expense</strong> is tagged with the same event/category structure as the budget it relates to, enabling a <strong>budget-vs-actual</strong> comparison per category, not just a flat expense list.</li>
+</ul>
+<h2 id="35-pledges">3.5 Pledges<a class="headerlink" href="#35-pledges" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>FR5.1</strong> — Adult members can pledge an amount against a pledge-based campaign.</li>
+<li><strong>FR5.2</strong> — A Guardian can pledge on behalf of their linked minor; Treasurer/Chairman can do so directly if no Guardian is set.</li>
+<li><strong>FR5.3</strong> — Pledges can be fulfilled via one or more payments (partial fulfillment supported).</li>
+<li><strong>FR5.4</strong> — Pledges can have an <strong>installment schedule</strong> (<code>PledgeInstallment</code>: amount + due date), including recurring monthly installments toward a single annual deadline.</li>
+</ul>
+<h2 id="36-payments">3.6 Payments<a class="headerlink" href="#36-payments" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>FR6.1</strong> — <strong>v1 live methods:</strong> bank transfer and cash, recorded manually by Treasurer/Chairman — including for a Guardian's linked child, or a minor's own pocket-money payment handed over in person.</li>
+<li><strong>FR6.2</strong> — <strong>In-kind payments</strong> (e.g. a hen) are recorded with an item description, quantity, and estimated value.</li>
+<li><strong>FR6.3</strong> — M-Pesa STK Push is implemented against the Daraja sandbox for development purposes but is <strong>feature-flagged off</strong> in production until the family is ready to adopt it.</li>
+<li><strong>FR6.4</strong> — When enabled, M-Pesa payments are recorded with callback data (transaction code, amount, timestamp); callback handling is idempotent, keyed on a unique transaction code, to survive retried/duplicate deliveries.</li>
+<li><strong>FR6.5</strong> — Manual payments always require Treasurer confirmation — there is no automated callback for bank/cash, so no auto-confirm path exists for them.</li>
+<li><strong>FR6.6</strong> — Partial payments accumulate against a pledge/fixed contribution until fulfilled.</li>
+<li><strong>FR6.7</strong> — Receipts are auto-generated (PDF) on confirmed payment and sent to the member, or to the Guardian for a minor's payment.</li>
+</ul>
+<h2 id="37-expenses-standing-welfare-fund">3.7 Expenses &amp; Standing Welfare Fund<a class="headerlink" href="#37-expenses-standing-welfare-fund" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>FR7.1</strong> — Treasurer records <strong>Expenses</strong> against an event/category, with description, amount, date, and an optional receipt attachment.</li>
+<li><strong>FR7.2</strong> — Expenses can optionally record a <strong>beneficiary member</strong> (e.g. bereavement support paid to a specific member) — useful for both welfare-fund payouts and year-end "who was supported" reporting.</li>
+<li><strong>FR7.3</strong> — A <strong>standing welfare/emergency fund</strong> operates without a fixed end date — an always-open, running-balance fund (distinct from time-boxed campaigns) for bereavement, hospital emergencies, and similar needs.</li>
+</ul>
+<h2 id="38-fines">3.8 Fines<a class="headerlink" href="#38-fines" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>FR8.1</strong> — Chairman/Secretary can record a <strong>fine</strong> against a member (e.g. missed meeting, late payment), with reason, amount, and date.</li>
+<li><strong>FR8.2</strong> — Fines appear on the member's own statement and contribute to the family's financial totals, but are not shown to other members individually (same aggregate-only privacy rule).</li>
+</ul>
+<h2 id="39-dispute-reconciliation">3.9 Dispute &amp; Reconciliation<a class="headerlink" href="#39-dispute-reconciliation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>FR9.1</strong> — A member can flag a payment as disputed and attach evidence (bank slip, M-Pesa message, screenshot).</li>
+<li><strong>FR9.2</strong> — Disputed payments enter a Treasurer review queue.</li>
+<li><strong>FR9.3</strong> — All reconciliation actions (what was disputed, resolution, who resolved it) are logged.</li>
+</ul>
+<h2 id="310-role-handover-leadership-terms">3.10 Role Handover &amp; Leadership Terms<a class="headerlink" href="#310-role-handover-leadership-terms" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>FR10.1</strong> — Leadership positions (Chairman, Secretary, Treasurer) run on a <strong>3-year term</strong>. Each <code>HandoverRecord</code> captures the outgoing officer, incoming officer, term start/end, and handover reason (scheduled election vs. early resignation).</li>
+<li><strong>FR10.2</strong> — Handover requires explicit confirmation from the outgoing officer before the incoming officer's permissions activate.</li>
+<li><strong>FR10.3</strong> — The full leadership history (who held which role, and for which term) remains queryable indefinitely — never overwritten.</li>
+</ul>
+<h2 id="311-meetings">3.11 Meetings<a class="headerlink" href="#311-meetings" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>FR11.1</strong> — Secretary creates meetings (date, time, location, agenda).</li>
+<li><strong>FR11.2</strong> — Secretary records attendance.</li>
+<li><strong>FR11.3</strong> — Secretary records, edits, publishes, and locks minutes — locked minutes are preserved as immutable; any further edit creates a new version rather than altering the locked record.</li>
+<li><strong>FR11.4</strong> — Members can view published minutes and their own attendance history.</li>
+<li><strong>FR11.5</strong> — Secretary sends meeting notifications (in-app, SMS).</li>
+</ul>
+<h2 id="312-reports-transparency">3.12 Reports &amp; Transparency<a class="headerlink" href="#312-reports-transparency" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>FR12.1</strong> — Public dashboard shows <strong>aggregate totals only</strong> per campaign/event (amount raised vs. target, % complete, contributor count, time remaining). Individual amounts are never shown to other members.</li>
+<li><strong>FR12.2</strong> — Treasurer/Chairman can generate full financial reports (per campaign, per event, per period, defaulter list) with individual-level detail.</li>
+<li><strong>FR12.3</strong> — Members can download their own contribution/payment statements (PDF); Guardians can download statements for their linked minors.</li>
+<li><strong>FR12.4</strong> — <strong>Annual Report</strong>: for each <code>FinancialYear</code>, a consolidated report showing total raised (by campaign and AGM), total spent (by event and category), opening balance, closing balance, and carry-forward into the next year — presented as tables and charts on the frontend (later phase), backed by aggregation queries built now.</li>
+<li><strong>FR12.5</strong> — Defaulter tracking with configurable reminder cadence (day 7/14/30 after due date), visible only to Treasurer/Chairman.</li>
+</ul>
+<h2 id="313-notifications">3.13 Notifications<a class="headerlink" href="#313-notifications" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>FR13.1</strong> — Multi-channel: in-app, SMS (v2: WhatsApp).</li>
+<li><strong>FR13.2</strong> — Triggers: new campaign/event, payment confirmation, pledge reminder, campaign-ending reminder, overdue reminder, meeting notice, role change/handover, budget published.</li>
+<li><strong>FR13.3</strong> — Notifications for a Minor Member's pledges/payments route to their Guardian's contact details.</li>
+</ul>
+<h2 id="314-audit-trail">3.14 Audit Trail<a class="headerlink" href="#314-audit-trail" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>FR14.1</strong> — All critical actions are logged immutably: pledges, payments, expenses, fines, approvals, role changes/handovers, minute edits/locks, member activation/deactivation, Guardian actions on behalf of a minor, budget approvals.</li>
+<li><strong>FR14.2</strong> — No financial record is ever hard-deleted (soft-delete/void with reason only).</li>
+<li><strong>FR14.3</strong> — Audit log is viewable by Chairman, exportable — the one place individual amounts and actor identities are always visible, since oversight requires it.</li>
+</ul>
+<h2 id="315-backups-data-retention">3.15 Backups &amp; Data Retention<a class="headerlink" href="#315-backups-data-retention" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>FR15.1</strong> — Scheduled, automated database backups (at minimum daily), stored separately from the primary database.</li>
+<li><strong>FR15.2</strong> — A documented retention and restore procedure, tested periodically — this is real family financial data and needs a recovery plan, not just a backup file sitting untested.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
