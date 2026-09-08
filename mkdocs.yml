@@ -1,0 +1,38 @@
+site_name: Family Contribution Management System
+site_description: Requirements & design documentation for a digital family contributions, campaigns, events and meetings platform
+site_author: Project Team
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: teal
+      accent: amber
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - toc.integrate
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - tables
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Roles & Permissions: roles-and-permissions.md
+  - Functional Requirements: functional-requirements.md
+  - Non-Functional Requirements: non-functional-requirements.md
+  - Data Model: data-model.md
+  - Security & Privacy: security-and-privacy.md
+  - Build Plan: build-plan.md
+  - Decision Log: decision-log.md
