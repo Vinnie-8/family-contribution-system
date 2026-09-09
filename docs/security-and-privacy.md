@@ -4,24 +4,42 @@ This page explains **how**, not just **what** — the reasoning behind each safe
 
 ## Onboarding: preventing impersonation
 
-A public, guessable invite link is a real risk — it can be forwarded or screenshotted, letting a non-family member register as a "member."
+## Onboarding: Chairman-issued temporary passwords
+
+There's no invite link or OTP step — the Chairman creates the member record directly, and the system issues credentials immediately.
 
 ```mermaid
 sequenceDiagram
     participant C as Chairman/Secretary
     participant S as System
-    participant M as New Member's Phone
+    participant M as Member
 
-    C->>S: Pre-create member record (name, phone, household)
-    S->>S: Generate single-use, expiring InviteToken tied to that phone number
-    S->>M: Send SMS with invite link + OTP
-    M->>S: Open link, enter OTP
-    S->>S: Verify OTP matches the token's phone number
-    S->>M: Account activated
+    C->>S: Create member record (name, phone, email)
+    S->>S: Generate temporary password, hash it, set must_change_password=TRUE, set password_expires_at = now + 48h
+    S->>M: Deliver temporary password (SMS/email)
+    M->>S: Log in with phone/email + temporary password
+    S->>S: Check is_active, check password_expires_at, verify password hash
+    S->>M: Access restricted to "change password" only (must_change_password=TRUE)
+    M->>S: Submit new password
+    S->>S: Set new password_hash, clear must_change_password, clear password_expires_at
+    S->>M: Signed out — must log in again with the new password
 ```
 
 !!! warning "Why this matters"
-    Self-registration is never allowed. Even if an invite link leaks, activation requires proving control of the **exact phone number** the Chairman registered — a stranger with the link but not the phone cannot complete registration.
+    A temporary password has a real expiry — if the member doesn't log in and change it within the window, the system rejects the login outright and tells them to request a new one from the Chairman, rather than silently letting a stale credential work indefinitely. Once a member sets their own permanent password, no forced expiry applies unless a periodic-rotation policy is added later as a separate decision.
+
+## Active status: a universal gate, not a per-feature check
+
+`is_active` is checked in exactly one place — the point where a session token is resolved back into a member record — rather than being re-checked separately inside every router. This matters because it means a deactivated member is blocked from **everything** the moment Chairman flips the switch, with no risk of a forgotten endpoint that never learned to check it. Role checks (`require_role`) still run per-action on top of this — active status answers "can this person use the system at all," roles answer "what specifically can they do."
+
+## Bulk onboarding: same guarantees, less manual entry
+
+Chairman can onboard members one at a time or as a batch (e.g. a list of names/phones submitted together). Every member in a batch still goes through the identical process as a solo onboard — their own independently generated temporary password, their own expiry, their own `must_change_password` flag. Nothing is shared or reused across a batch. If one row in a batch conflicts with an existing record (e.g. a duplicate phone number), that row is reported as failed while the rest of the batch still succeeds — a single bad row shouldn't block onboarding 59 other people.
+
+## Temporary password delivery: stubbed, not skipped
+
+Delivering a temporary password requires an SMS/email channel, which properly belongs to `feature/notifications` — a branch that doesn't exist yet. Rather than blocking `feature/auth` on that dependency, `send_sms()` is stubbed to log the message to the console. Every other part of the onboarding flow — password generation, hashing, expiry, forced change — is fully real and testable today; only the actual delivery mechanism is a placeholder, and swapping in a real SMS gateway later requires no change to any code that calls `send_sms()`.
+
 
 ## Minors: no account, no exposure
 

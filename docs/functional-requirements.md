@@ -1,13 +1,15 @@
 # Functional Requirements
 
 ## 3.1 Member Management & Onboarding
-- **FR1.1** — Chairman/Secretary pre-creates a member record (name, phone, email, ID number, household) *before* the person has an account. Self-registration is not permitted — membership is always Chairman-gated.
-- **FR1.2** — System generates a single-use, expiring **invite token** tied to the member's specific phone number, sent via SMS. Activation requires OTP verification of that exact number, so a leaked link cannot be used by a non-family member.
-- **FR1.3** — Chairman can activate/deactivate adult members.
-- **FR1.4** — A **Minor Member** record can be created directly (no invite token, no login) and linked to a Guardian via `GuardianLink`. Minors appear in the directory as "linked to [Guardian]."
-- **FR1.5** — Members can be grouped into optional households/family branches.
-- **FR1.6** — Directory view of all active members (adults and minors), filterable by household.
-
+- **FR1.1** — Chairman/Secretary pre-creates a member record (name, phone, email, ID number, household) directly.
+- **FR1.2** — Chairman can onboard members **individually** (one form) or **in bulk** (a list of members submitted in one action). Each member — whether onboarded alone or as part of a batch — independently receives their own temporary password, expiry, and `must_change_password` flag; passwords are never shared or reused across members in a batch. A bulk batch reports success/failure per row rather than failing the whole batch if one row has a conflict (e.g. a duplicate phone number).
+- **FR1.3** — On creation, the system generates a **temporary password** per member, hashes it, and stores it along with `must_change_password = true` and a `password_expires_at` timestamp (e.g. 48 hours out). Delivery is via `send_sms()` — stubbed to log to console until `feature/notifications` is built, at which point the real SMS gateway replaces the stub with no change needed to the onboarding logic that calls it.
+- **FR1.4** — On first login with a temporary password, the member is restricted to only the change-password action until they set a permanent password. On successful change, `must_change_password` is cleared, `password_expires_at` is cleared, and the member is signed out and required to log in again with the new password.
+- **FR1.5** — If a temporary password's `password_expires_at` has passed before the member logs in, login is rejected with a message directing them to request a new temporary password from the Chairman — not a generic login failure.
+- **FR1.6** — Chairman can activate/deactivate members. `is_active` is checked as a universal gate whenever a member's identity is resolved from their session — a deactivated member is blocked from every action, not just specific ones.
+- **FR1.7** — A **Minor Member** record can be created directly (no credentials, no login) and linked to a Guardian via `GuardianLink`. Minors appear in the directory as "linked to [Guardian]."
+- **FR1.8** — Members can be grouped into optional households/family branches.
+- **FR1.9** — Directory view of all active members (adults and minors), filterable by household.
 ## 3.2 Contribution Rules & AGM
 - **FR2.1** — Chairman can define a **`ContributionRule`** set for a campaign, specifying different amounts per member category (e.g. male: KES 2,000, female: KES 500 + one hen). Rules are data, not hardcoded logic — new categories or amounts don't require a code change.
 - **FR2.2** — Contributions can be **cash or in-kind** (e.g. a hen), each with an optional estimated value for reporting purposes.

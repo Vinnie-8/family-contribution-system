@@ -6,6 +6,9 @@ A running record of design decisions, why they were made, and what's still open 
 
 | Decision | Rationale |
 |---|---|
+| Onboarding uses a Chairman-issued temporary password (with expiry + forced change on first login), not an invite link/OTP | Simpler and more realistic for a Chairman who already personally knows and contacts every member directly; the expiry + forced-change step still prevents indefinite use of a stale or leaked credential |
+| Chairman can onboard members individually or in bulk, each still receiving an independent temp password | Saves significant manual entry time for ~60 members while keeping per-member security properties identical to single onboarding |
+| `send_sms()` is stubbed to log to console until `feature/notifications` is built | Lets the full auth flow be built and tested end-to-end now without blocking on SMS gateway integration; swapping in the real implementation later requires no change to calling code |
 | Individual contribution amounts are never shown to other members — aggregate-only, always | Preserves family harmony and privacy while still giving everyone visibility into overall progress |
 | v1 targets a single family (~60 members); multi-tenancy is designed into the schema but not built as a user-facing feature | Avoids premature complexity while keeping the door open for scaling to other families later without a schema rewrite |
 | Manual payments (bank transfer/cash/in-kind) are the only live method in v1; M-Pesa STK Push is built against the Daraja sandbox but feature-flagged off | Matches how the family currently pays; keeps the M-Pesa integration work usable for learning without risking real transactions on an unproven flow |
