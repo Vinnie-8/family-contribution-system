@@ -692,6 +692,18 @@
 </thead>
 <tbody>
 <tr>
+<td>Onboarding uses a Chairman-issued temporary password (with expiry + forced change on first login), not an invite link/OTP</td>
+<td>Simpler and more realistic for a Chairman who already personally knows and contacts every member directly; the expiry + forced-change step still prevents indefinite use of a stale or leaked credential</td>
+</tr>
+<tr>
+<td>Chairman can onboard members individually or in bulk, each still receiving an independent temp password</td>
+<td>Saves significant manual entry time for ~60 members while keeping per-member security properties identical to single onboarding</td>
+</tr>
+<tr>
+<td><code>send_sms()</code> is stubbed to log to console until <code>feature/notifications</code> is built</td>
+<td>Lets the full auth flow be built and tested end-to-end now without blocking on SMS gateway integration; swapping in the real implementation later requires no change to calling code</td>
+</tr>
+<tr>
 <td>Individual contribution amounts are never shown to other members — aggregate-only, always</td>
 <td>Preserves family harmony and privacy while still giving everyone visibility into overall progress</td>
 </tr>

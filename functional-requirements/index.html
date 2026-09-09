@@ -828,12 +828,15 @@
 <h1 id="functional-requirements">Functional Requirements<a class="headerlink" href="#functional-requirements" title="Permanent link">&para;</a></h1>
 <h2 id="31-member-management-onboarding">3.1 Member Management &amp; Onboarding<a class="headerlink" href="#31-member-management-onboarding" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>FR1.1</strong> — Chairman/Secretary pre-creates a member record (name, phone, email, ID number, household) <em>before</em> the person has an account. Self-registration is not permitted — membership is always Chairman-gated.</li>
-<li><strong>FR1.2</strong> — System generates a single-use, expiring <strong>invite token</strong> tied to the member's specific phone number, sent via SMS. Activation requires OTP verification of that exact number, so a leaked link cannot be used by a non-family member.</li>
-<li><strong>FR1.3</strong> — Chairman can activate/deactivate adult members.</li>
-<li><strong>FR1.4</strong> — A <strong>Minor Member</strong> record can be created directly (no invite token, no login) and linked to a Guardian via <code>GuardianLink</code>. Minors appear in the directory as "linked to [Guardian]."</li>
-<li><strong>FR1.5</strong> — Members can be grouped into optional households/family branches.</li>
-<li><strong>FR1.6</strong> — Directory view of all active members (adults and minors), filterable by household.</li>
+<li><strong>FR1.1</strong> — Chairman/Secretary pre-creates a member record (name, phone, email, ID number, household) directly.</li>
+<li><strong>FR1.2</strong> — Chairman can onboard members <strong>individually</strong> (one form) or <strong>in bulk</strong> (a list of members submitted in one action). Each member — whether onboarded alone or as part of a batch — independently receives their own temporary password, expiry, and <code>must_change_password</code> flag; passwords are never shared or reused across members in a batch. A bulk batch reports success/failure per row rather than failing the whole batch if one row has a conflict (e.g. a duplicate phone number).</li>
+<li><strong>FR1.3</strong> — On creation, the system generates a <strong>temporary password</strong> per member, hashes it, and stores it along with <code>must_change_password = true</code> and a <code>password_expires_at</code> timestamp (e.g. 48 hours out). Delivery is via <code>send_sms()</code> — stubbed to log to console until <code>feature/notifications</code> is built, at which point the real SMS gateway replaces the stub with no change needed to the onboarding logic that calls it.</li>
+<li><strong>FR1.4</strong> — On first login with a temporary password, the member is restricted to only the change-password action until they set a permanent password. On successful change, <code>must_change_password</code> is cleared, <code>password_expires_at</code> is cleared, and the member is signed out and required to log in again with the new password.</li>
+<li><strong>FR1.5</strong> — If a temporary password's <code>password_expires_at</code> has passed before the member logs in, login is rejected with a message directing them to request a new temporary password from the Chairman — not a generic login failure.</li>
+<li><strong>FR1.6</strong> — Chairman can activate/deactivate members. <code>is_active</code> is checked as a universal gate whenever a member's identity is resolved from their session — a deactivated member is blocked from every action, not just specific ones.</li>
+<li><strong>FR1.7</strong> — A <strong>Minor Member</strong> record can be created directly (no credentials, no login) and linked to a Guardian via <code>GuardianLink</code>. Minors appear in the directory as "linked to [Guardian]."</li>
+<li><strong>FR1.8</strong> — Members can be grouped into optional households/family branches.</li>
+<li><strong>FR1.9</strong> — Directory view of all active members (adults and minors), filterable by household.</li>
 </ul>
 <h2 id="32-contribution-rules-agm">3.2 Contribution Rules &amp; AGM<a class="headerlink" href="#32-contribution-rules-agm" title="Permanent link">&para;</a></h2>
 <ul>
