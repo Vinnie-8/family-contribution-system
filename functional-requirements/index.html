@@ -835,7 +835,7 @@
 <li><strong>FR1.5</strong> — If a temporary password's <code>password_expires_at</code> has passed before the member logs in, login is rejected with a message directing them to request a new temporary password from the Chairman — not a generic login failure.</li>
 <li><strong>FR1.6</strong> — Chairman can activate/deactivate members. <code>is_active</code> is checked as a universal gate whenever a member's identity is resolved from their session — a deactivated member is blocked from every action, not just specific ones.</li>
 <li><strong>FR1.7</strong> — A <strong>Minor Member</strong> record can be created directly (no credentials, no login) and linked to a Guardian via <code>GuardianLink</code>. Minors appear in the directory as "linked to [Guardian]."</li>
-<li><strong>FR1.8</strong> — Members can be grouped into optional households/family branches.</li>
+<li><strong>FR1.8</strong> — Members can optionally be grouped into a <strong>household</strong> — a sub-grouping within the family (e.g. each sibling's nuclear family unit). Not mandatory; a member can have no household assigned.</li>
 <li><strong>FR1.9</strong> — Directory view of all active members (adults and minors), filterable by household.</li>
 </ul>
 <h2 id="32-contribution-rules-agm">3.2 Contribution Rules &amp; AGM<a class="headerlink" href="#32-contribution-rules-agm" title="Permanent link">&para;</a></h2>
